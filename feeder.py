@@ -1,8 +1,8 @@
 """
 Feeder:
-This program interacts with the Reddit API. It grabs the most recent posts and stores them in files to be loaded by loader.py
+This program interacts with the Reddit API. It grabs the most recent posts and stores them in pickle files.
 
-Last update: 13 October 2014
+Last update: 14 October 2014
 """
 
 import requests
@@ -12,6 +12,7 @@ import pickle
 
 #Need to flesh out saving
 
+"""Get history interacts with API then saves lists to pickle files"""
 def gethistory(limit,subreddit):
 
     #Gets new posts from subreddit
