@@ -52,7 +52,7 @@ def managefiles():
   return history
 
 """Calls managefiles() which calls loadfiles(). Calling this will fix the histories (so it is the only function that actually needs to be called from manager.py). Also saves everything back to the pickle files"""  
-def picklefix()
+def picklefix():
   #Gets history
   history = managefiles()
 
