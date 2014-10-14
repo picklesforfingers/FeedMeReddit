@@ -1,5 +1,7 @@
 """
 This File grabs files from feeder.py and analyzes the data and deletes repeat enteries so that posts do not show up multiple times. This is using URL instead of Title because using title could make posts with the same title but different creators be deleted because it looks like a repost.
+
+Last Updated 14 October 2014
 """
 
 #This file has not yet been tested to see if it runs. Being created away from a python environment
