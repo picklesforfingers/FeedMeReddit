@@ -18,5 +18,7 @@ How To Use
 For current features:
 
 Go to project directory
+
 python feeder.py
+
 python manager.py
