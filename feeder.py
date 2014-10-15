@@ -11,12 +11,22 @@ import pickle
 
 
 #Need to flesh out saving
+#Note to self: create better variable names
+
 
 """Get history interacts with API then saves lists to pickle files"""
 def gethistory(limit,subreddit):
+    #Grabs history from files
+    thist = open("title.obj", 'rb')
+    tinitial = pickle.load(thist)
+    thist.close()
+    uhist = open("url.obj", 'rb')
+    uinitial = pickle.load(uhist)
+    uhist.close()
+
 
     #Gets new posts from subreddit
-    r = requests.get(r'http://www.reddit.com/r/' + subreddit + '/new/.json')
+    r = requests.get(r'http://www.reddit.com/r/' + subreddit + '/new/.json', timeout=60)
     data = r.json()
 
     #Creates lists to store data
@@ -28,14 +38,22 @@ def gethistory(limit,subreddit):
         title.append(data['data']['children'][i]['data']['title'])  #Gets title
         url.append(data['data']['children'][i]['data']['url'])  #Gets URL
 
+    for i in range(len(title)):
+        tinitial.append(title[i])
+
+    for i in range(len(url)):
+        uinitial.append(url[i])
+
+
+
     #Pickles title history
     thist = open("title.obj", 'wb')
-    pickle.dump(title, thist)
+    pickle.dump(tinitial, thist)
     thist.close()
 
     #Pickles url history
     turl = open("url.obj", 'wb')
-    pickle.dump(url, turl)
+    pickle.dump(uinitial, turl)
     turl.close()
 
 """For testing

@@ -21,7 +21,8 @@ def loadfiles():
   #Closes files
   title.close()
   url.close()
-  
+
+
   #Creates a list holding the titles and urls
   history = [tlist, ulist]
   
@@ -33,22 +34,25 @@ def loadfiles():
 def managefiles():
   #Gets list of titles and urls
   history = loadfiles()
-  
+
+  i = 0
+
   #Deletes repeat entries
-  for i in range(len(history[1])):
-    for x in range(len(history[1])):
-      if history[1][i] == history[1][x] && i != x:
-          history[0].pop(x)
-          history[1].pop(x)
-          x -= 1 #Not sure about these. 
-          if i != 0:  #The thought is that the indexes will change and I should go over them again to prevent errors
-            i -= 1 #I will have to test them
-  
-  #Deletes entery if list is over 100
-  if len(history[1]) > 100:
-    for i in range(100, len(history[1])):
-      history[0].pop(i)
-      history[1].pop(i)
+  while i < len(history[1]):
+    x = 0
+    while x < len(history[1]):
+        if history[1][x] == history[1][i] and i != x:
+            history[0].pop(x)
+            history[1].pop(x)
+            x -= 1 #Because x will have a new item, it could also be a repeat entry
+        x += 1
+    i += 1
+
+    #Deletes entery if list is over 100
+  if len(history[1]) >  100:
+    for i in range(len(history[1])-100):
+      history[0].pop()
+      history[1].pop()
   
   #Returns new history
   return history
@@ -64,7 +68,7 @@ def picklefix():
   
   #Dumps lists into files
   pickle.dump(history[0], title)
-  pickle.dump(history[1], url
+  pickle.dump(history[1], url)
   
   #Closes files
   title.close()
@@ -75,7 +79,7 @@ def picklefix():
 
 """For testing"""
 #This test assumes feeder.py has already been run and that there are the requested .obj files for loader.py to use
-if __init__ == '__main__':
+if __name__ == '__main__':
   picklefix()
   
   #Prints content from fixed files 

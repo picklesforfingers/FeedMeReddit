@@ -15,6 +15,8 @@ The endgoal of this project is to have a twitter-like app on your desktop that w
 How To Use
 ============
 
-Currently, all that can be done is running feeder.py. This will pull the 20 newest posts and display their
-titles and urls.
+For current features:
 
+Go to project directory
+python feeder.py
+python manager.py
