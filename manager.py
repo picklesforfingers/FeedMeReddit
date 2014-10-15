@@ -7,41 +7,41 @@ import pickle
 
 """Loads files containing current feeder history and saves them to a list"""
 def loadfiles():
-  #Opens files
+    #Opens files
     title = open('title.obj', 'rb')
     url = open('url.obj', 'rb')
   
-  #Saves to list
+    #Saves to list
     tlist = pickle.load(title)
     ulist = pickle.load(url)
   
-  #Closes files
+    #Closes files
     title.close()
     url.close()
 
 
-  #Creates a list holding the titles and urls
+    #Creates a list holding the titles and urls
     history = [tlist, ulist]
   
-  #Returns data
+    #Returns data
     return history
   
 
 """Calls loadfiles() then fixes title and url history"""
 def managefiles():
-  #Gets list of titles and urls
+    #Gets list of titles and urls
     history = loadfiles()
 
     i = 0
 
-  #Deletes repeat entries
+    #Deletes repeat entries
     while i < len(history[1]):
         x = 0
         while x < len(history[1]):
             if history[1][x] == history[1][i] and i != x:
                 history[0].pop(x)
                 history[1].pop(x)
-                x -= 1 #Because x will have a new item, it could also be a repeat entry
+                x -= 1  #Because x will have a new item, it could also be a repeat entry
             x += 1
         i += 1
 
