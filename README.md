@@ -17,8 +17,6 @@ How To Use
 
 For current features:
 
-Go to project directory
+run pickleinit.py
 
-python feeder.py
-
-python manager.py
+run gui.py
