@@ -6,7 +6,7 @@ import urllib.request
 
 if __name__ == '__main__':
 
-    r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json').read().decode("utf-8")
+    r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json', timeout=60).read().decode("utf-8")
     data = json.loads(r)
     t = []
     u = []

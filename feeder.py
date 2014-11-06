@@ -5,6 +5,7 @@ This program interacts with the Reddit API. It grabs the most recent posts and s
 Last update: 14 October 2014
 """
 
+import requests
 import urllib
 import json
 import pickle

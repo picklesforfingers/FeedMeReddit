@@ -29,7 +29,7 @@ class Display(Frame):
             self.var = x
             self.button = Button(self)
             self.button["text"] = self.feed[0][x],
-            self.button["command"] = lambda: self.urlOpen(self.feed[1], self.var)
+            self.button["command"] = lambda var = self.var : self.urlOpen(self.feed[1], var)
             self.button.pack({"side": "top"})
 
     """Gets pickle data"""
