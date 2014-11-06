@@ -2,7 +2,7 @@
 Feeder:
 This program interacts with the Reddit API. It grabs the most recent posts and stores them in pickle files.
 
-Last update: 14 October 2014
+Last update: 6 November 2014
 """
 
 import requests
@@ -27,7 +27,7 @@ def gethistory(limit,subreddit):
 
 
     #Gets new posts from subreddit
-    r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json').read().decode("utf-8")
+    r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json', timeout = 60).read().decode("utf-8")
     data = json.loads(r)
 
     #Creates lists to store data

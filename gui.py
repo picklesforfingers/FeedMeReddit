@@ -1,6 +1,6 @@
 """This is the gui that everything displays on. It uses the tkinter framework
 
-Last Updated 16 October 2014
+Last Updated 6 November 2014
 """
 
 from tkinter import *
@@ -11,7 +11,7 @@ import webbrowser
 
 class Display(Frame):
     def __init__(self, master=None):
-        Frame.__init__(self, master)
+        Frame.__init__(self, master, background = "white")
         self.pack()
         self.createWidgets()
 
@@ -23,14 +23,20 @@ class Display(Frame):
     def createWidgets(self):
         #Grabs titles and urls
         self.feed = self.getPickle()
-        
         #Creates buttons
         for x in range(len(self.feed[0])):
             self.var = x
             self.button = Button(self)
-            self.button["text"] = self.feed[0][x],
+            self.button["anchor"] = CENTER
+            if len(self.feed[0][x]) < 37:
+                self.button["text"] = self.feed[0][x]
+            else:
+                self.button["text"] = self.feed[0][x][:36] + "..."
             self.button["command"] = lambda var = self.var : self.urlOpen(self.feed[1], var)
-            self.button.pack({"side": "top"})
+            self.button["background"] = "white"
+            self.button["width"] = 30
+
+            self.button.grid(row=x+2, column=0)
 
     """Gets pickle data"""
     def getPickle(self):
@@ -54,6 +60,8 @@ class Display(Frame):
 
 #Frame Loop
 app = Tk()
+app.attributes('-zoomed', True)
+app.configure(background='light cyan')
 gui = Display(master=app)
 gui.mainloop()
 app.destroy()
