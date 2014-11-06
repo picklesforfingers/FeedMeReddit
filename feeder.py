@@ -5,7 +5,7 @@ This program interacts with the Reddit API. It grabs the most recent posts and s
 Last update: 14 October 2014
 """
 
-import requests
+import urllib
 import json
 import pickle
 
@@ -26,8 +26,8 @@ def gethistory(limit,subreddit):
 
 
     #Gets new posts from subreddit
-    r = requests.get(r'http://www.reddit.com/r/' + subreddit + '/new/.json', timeout=60)
-    data = r.json()
+    r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json').read().decode("utf-8")
+    data = json.loads(r)
 
     #Creates lists to store data
     title =[]
