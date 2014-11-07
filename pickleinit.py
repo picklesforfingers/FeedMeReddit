@@ -4,7 +4,7 @@ import json
 import requests
 import urllib.request
 
-if __name__ == '__main__':
+def guiinit():
 
     r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json', timeout=60).read().decode("utf-8")
     data = json.loads(r)

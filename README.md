@@ -17,6 +17,4 @@ How To Use
 
 For current features:
 
-run pickleinit.py
-
 run gui.py

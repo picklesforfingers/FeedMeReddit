@@ -7,7 +7,14 @@ from tkinter import *
 import pickle
 from FeedMeReddit import feeder
 from FeedMeReddit import manager
+from FeedMeReddit import pickleinit
 import webbrowser
+
+
+try:
+    open("title.obj", "rb")
+except OSError as err:
+    pickleinit.guiinit()
 
 class Display(Frame):
     def __init__(self, master=None):
