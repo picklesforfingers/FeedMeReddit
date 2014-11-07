@@ -18,12 +18,18 @@ import pickle
 """Get history interacts with API then saves lists to pickle files"""
 def gethistory(limit,subreddit):
     #Grabs history from files
+    #Titles
     thist = open("title.obj", 'rb')
     tinitial = pickle.load(thist)
     thist.close()
+    #URLs
     uhist = open("url.obj", 'rb')
     uinitial = pickle.load(uhist)
     uhist.close()
+    #Comment Permalinks
+    phist = open("perma.obj", 'rb')
+    pinitial = pickle.load(phist)
+    phist.close()
 
 
     #Gets new posts from subreddit
@@ -33,11 +39,13 @@ def gethistory(limit,subreddit):
     #Creates lists to store data
     title =[]
     url = []
+    permalink = []
 
     #Stores titles and urls to lists
     for i in range(0,limit):
         title.append(data['data']['children'][i]['data']['title'])  #Gets title
         url.append(data['data']['children'][i]['data']['url'])  #Gets URL
+        permalink.append("http://www.reddit.com" + data['data']['children'][i]['data']['permalink'])  #Gets Comments
 
     for i in range(len(title)):
         tinitial.append(title[i])
@@ -45,6 +53,8 @@ def gethistory(limit,subreddit):
     for i in range(len(url)):
         uinitial.append(url[i])
 
+    for i in range(len(permalink)):
+        pinitial.append(url[i])
 
 
     #Pickles title history
@@ -57,20 +67,7 @@ def gethistory(limit,subreddit):
     pickle.dump(uinitial, turl)
     turl.close()
 
-"""For testing
-   Uses reddit.com/r/programming/new as example subreddit
-   Limits history to 20"""
-if __name__ == "__main__":
-    gethistory(20, "programming") #(limit, subreddit)
-    tfile = open("title.obj", 'rb') #opens title file
-    ufile = open("url.obj", 'rb')  #opens url file
-    tout = pickle.load(tfile)
-    uout = pickle.load(ufile)
-
-    #Prints out data
-    for i in range(len(tout)):
-        print(tout[i])
-        print(uout[i])
-
-    tfile.close()
-    ufile.close()
+    #Pickles permalink history
+    tperma = open("perma.obj", 'wb')
+    pickle.dump(pinitial, tperma)
+    tperma.close()

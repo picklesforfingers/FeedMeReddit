@@ -16,8 +16,9 @@ class Display(Frame):
         self.createWidgets()
 
     """Opens the address of the reddit post picked"""
-    def urlOpen(self, feed, var):
+    def urlOpen(self, feed, perma, var):
         webbrowser.open(feed[var], new=0, autoraise=True)
+        webbrowser.open(perma[var], new=0, autoraise=True)
 
     """Creates button"""
     def createWidgets(self):
@@ -32,7 +33,7 @@ class Display(Frame):
                 self.button["text"] = self.feed[0][x]
             else:
                 self.button["text"] = self.feed[0][x][:36] + "..."
-            self.button["command"] = lambda var = self.var : self.urlOpen(self.feed[1], var)
+            self.button["command"] = lambda var = self.var : self.urlOpen(self.feed[1], self.feed[2], var)
             self.button["background"] = "white"
             self.button["width"] = 30
 
@@ -41,7 +42,7 @@ class Display(Frame):
     """Gets pickle data"""
     def getPickle(self):
         #Temporary gui initialization
-        feeder.gethistory(20, 'programming')
+        #feeder.gethistory(20, 'programming')
         manager.picklefix()
         
         #Loads Titles
@@ -53,8 +54,13 @@ class Display(Frame):
         self.url = open("url.obj", "rb")
         self.uhist = pickle.load(self.url)
         self.url.close()
-    
-        self.list = [self.thist, self.uhist]
+
+        #Loads Permas
+        self.perma = open("perma.obj", 'rb')
+        self.phist = pickle.load(self.perma)
+        self.perma.close()
+
+        self.list = [self.thist, self.uhist, self.phist]
 
         return self.list
 
