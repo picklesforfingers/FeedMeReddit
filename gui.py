@@ -23,9 +23,9 @@ class Display(Frame):
         self.createWidgets()
 
     """Opens the address of the reddit post picked"""
-    def urlOpen(self, feed, perma, var):
-        webbrowser.open(feed[var], new=0, autoraise=True)
-        webbrowser.open(perma[var], new=0, autoraise=True)
+    def urlOpen(self, feed, perma, x):
+        webbrowser.open(feed[x], new=0, autoraise=True)
+        webbrowser.open(perma[x], new=0, autoraise=True)
 
     """Creates button"""
     def createWidgets(self):
@@ -33,14 +33,13 @@ class Display(Frame):
         self.feed = self.getPickle()
         #Creates buttons
         for x in range(len(self.feed[0])):
-            self.var = x
             self.button = Button(self)
             self.button["anchor"] = CENTER
             if len(self.feed[0][x]) < 37:
                 self.button["text"] = self.feed[0][x]
             else:
                 self.button["text"] = self.feed[0][x][:36] + "..."
-            self.button["command"] = lambda var = self.var : self.urlOpen(self.feed[1], self.feed[2], var)
+            self.button["command"] = lambda x = x: self.urlOpen(self.feed[1], self.feed[2], x)
             self.button["background"] = "white"
             self.button["width"] = 30
 

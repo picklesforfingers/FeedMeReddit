@@ -20,15 +20,15 @@ def gethistory(limit,subreddit):
     #Grabs history from files
     #Titles
     thist = open("title.obj", 'rb')
-    tinitial = pickle.load(thist)
+    titlehistory = pickle.load(thist)
     thist.close()
     #URLs
     uhist = open("url.obj", 'rb')
-    uinitial = pickle.load(uhist)
+    urlhistory = pickle.load(uhist)
     uhist.close()
     #Comment Permalinks
     phist = open("perma.obj", 'rb')
-    pinitial = pickle.load(phist)
+    permahistory = pickle.load(phist)
     phist.close()
 
 
@@ -48,26 +48,26 @@ def gethistory(limit,subreddit):
         permalink.append("http://www.reddit.com" + data['data']['children'][i]['data']['permalink'])  #Gets Comments
 
     for i in range(len(title)):
-        tinitial.append(title[i])
+        titlehistory.append(title[i])
 
     for i in range(len(url)):
-        uinitial.append(url[i])
+        urlhistory.append(url[i])
 
     for i in range(len(permalink)):
-        pinitial.append(url[i])
+        permahistory.append(url[i])
 
 
     #Pickles title history
     thist = open("title.obj", 'wb')
-    pickle.dump(tinitial, thist)
+    pickle.dump(titlehistory, thist)
     thist.close()
 
     #Pickles url history
     turl = open("url.obj", 'wb')
-    pickle.dump(uinitial, turl)
+    pickle.dump(urlhistory, turl)
     turl.close()
 
     #Pickles permalink history
     tperma = open("perma.obj", 'wb')
-    pickle.dump(pinitial, tperma)
+    pickle.dump(permahistory, tperma)
     tperma.close()

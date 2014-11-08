@@ -38,10 +38,10 @@ def managefiles():
     i = 0
 
     #Deletes repeat entries
-    while i < len(history[1]):
+    while i < len(history[2]):
         x = 0
-        while x < len(history[1]):
-            if history[1][x] == history[1][i] and i != x:
+        while x < len(history[2]):
+            if history[2][x] == history[2][i] and i != x:
                 history[0].pop(x)
                 history[1].pop(x)
                 history[2].pop(x)
