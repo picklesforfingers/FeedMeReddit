@@ -20,6 +20,7 @@ class Display(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master, background = "white")
         self.pack()
+        #self.createLabels()
         self.createWidgets()
 
     """Opens the address of the reddit post picked"""
@@ -27,10 +28,24 @@ class Display(Frame):
         webbrowser.open(feed[x], new=0, autoraise=True)
         webbrowser.open(perma[x], new=0, autoraise=True)
 
-    """Creates button"""
+
     def createWidgets(self):
+        #Subreddit Entry
+        self.enterSub = Entry(self)
+        self.enterSub["width"] = 25
+        self.enterSub.grid(row=1, column=0)
+
+        #Button to Enter Subreddit
+        self.enbutton = Button(self)
+        self.enbutton["width"] = 5
+        self.enbutton["text"] = "enter"
+        self.enbutton["command"] = lambda : self.createLabels(self.enterSub.get())
+        self.enbutton.grid(row=1, column=1)
+
+    """Creates button"""
+    def createLabels(self, sub):
         #Grabs titles and urls
-        self.feed = self.getPickle()
+        self.feed = self.getPickle(sub)
         #Creates buttons
         for x in range(len(self.feed[0])):
             self.button = Button(self)
@@ -46,9 +61,9 @@ class Display(Frame):
             self.button.grid(row=x+2, column=0)
 
     """Gets pickle data"""
-    def getPickle(self):
-        #Temporary gui initialization
-        #feeder.gethistory(20, 'programming')
+    def getPickle(self, sub):
+        #Gets Posts
+        pickleinit.guiinit(sub)
         manager.picklefix()
         
         #Loads Titles

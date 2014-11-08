@@ -4,10 +4,10 @@ import json
 import requests
 import urllib.request
 
-def guiinit():
+def guiinit(sub):
 
     #Gets information from Reddit
-    r = urllib.request.urlopen(r'http://www.reddit.com/r/programming/new/.json', timeout=60).read().decode("utf-8")
+    r = urllib.request.urlopen(r'http://www.reddit.com/r/' + sub + '/new/.json', timeout=60).read().decode("utf-8")
     data = json.loads(r)
 
     #Creates ists to hold data

@@ -1,0 +1,15 @@
+Current Focus:
+-Automatic Update
+-Better, fuller UI
+-Have current vote and comment count display on UI
+
+Planned:
+-Nicer Color Scheme
+-Settings to change size of post limit
+-Ability to scroll
+
+Ideas:
+-Create multis. So you can have a "programming type subreddit feed" and a "Ask____ type subreddit feed" etc.
+
+Completed Tasks;
+-A way to search individual subreddits

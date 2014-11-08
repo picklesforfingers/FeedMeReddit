@@ -50,8 +50,8 @@ def managefiles():
         i += 1
 
     #Deletes entery if list is over 100
-    if len(history[1]) >  100:
-        for i in range(len(history[1]) - 100):
+    if len(history[1]) >  20:
+        for i in range(len(history[1]) - 20):
             history[0].pop()
             history[1].pop()
             history[2].pop()
